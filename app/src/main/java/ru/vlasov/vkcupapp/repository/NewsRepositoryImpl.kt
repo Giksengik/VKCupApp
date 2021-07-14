@@ -7,6 +7,7 @@ import ru.vlasov.vkcupapp.models.vkapi.PostData
 import ru.vlasov.vkcupapp.network.json.vkapi.RemoteContentDataSource
 import java.io.IOException
 import java.lang.Exception
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
@@ -44,8 +45,10 @@ class NewsRepositoryImpl @Inject constructor(
             postCount = 0
             NewsViewState.Success(currentPostsList[postCount++])
         }catch (e : Exception){
+            e.printStackTrace()
             when(e){
                 is IOException -> NewsViewState.Fail.NetworkError
+                is IllegalArgumentException -> NewsViewState.Unauthorized
                 is HttpException -> {
                     when(e.code()){
                         5 -> {
@@ -60,17 +63,48 @@ class NewsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun ignorePost(postData: PostData) {
-        try {
+    override suspend fun ignorePost(postData: PostData) : NewsViewState {
+        return try {
             remoteDataSource.ignorePost(postData)
-        }catch (e : Exception){ }
+            NewsViewState.OperationComplete
+        }catch (e : Exception){
+            when(e){
+                is IOException -> NewsViewState.Fail.NetworkError
+                is IllegalArgumentException -> NewsViewState.Unauthorized
+                is HttpException -> {
+                    when(e.code()){
+                        5 -> {
+                            vkUserDataHolder.clearUserData()
+                            NewsViewState.Unauthorized
+                        }
+                        else -> NewsViewState.Fail.NetworkError
+                    }
+                }
+                else -> NewsViewState.Fail.UnexpectedError
+            }
+        }
     }
 
-    override suspend fun likeLastItem() {
-        try {
+    override suspend fun likeLastItem() : NewsViewState {
+        return try {
             remoteDataSource.likePost(currentPostsList[postCount - 1])
-        }catch (e : Exception){ }
-
+            NewsViewState.OperationComplete
+        } catch (e: Exception) {
+            when (e) {
+                is IOException -> NewsViewState.Fail.NetworkError
+                is IllegalArgumentException -> NewsViewState.Unauthorized
+                is HttpException -> {
+                    when (e.code()) {
+                        5 -> {
+                            vkUserDataHolder.clearUserData()
+                            NewsViewState.Unauthorized
+                        }
+                        else -> NewsViewState.Fail.NetworkError
+                    }
+                }
+                else -> NewsViewState.Fail.UnexpectedError
+            }
+        }
     }
 
 

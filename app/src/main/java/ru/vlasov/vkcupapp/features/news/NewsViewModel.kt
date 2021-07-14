@@ -34,7 +34,9 @@ class NewsViewModel @Inject constructor(private val newsRepository: NewsReposito
 
     fun likePost(){
             viewModelScope.launch(Dispatchers.Default) {
-                newsRepository.likeLastItem()
+                val state =  newsRepository.likeLastItem()
+                if( state !is NewsViewState.OperationComplete)
+                    mutableNewsViewState.postValue(state)
             }
 
     }

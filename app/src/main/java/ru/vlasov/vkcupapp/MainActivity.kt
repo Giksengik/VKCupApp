@@ -2,6 +2,7 @@ package ru.vlasov.vkcupapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,8 @@ class  MainActivity
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+        binding.navHostFragment.visibility = View.VISIBLE
         val callback = object: VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
                 vkUserDataHolder.parseUserToken(token)
@@ -58,5 +61,7 @@ class  MainActivity
 
     override fun auth() {
         VK.login(this, arrayListOf(VKScope.WALL, VKScope.FRIENDS))
+        binding.bottomNavigationView.visibility = View.GONE
+        binding.navHostFragment.visibility = View.GONE
     }
 }

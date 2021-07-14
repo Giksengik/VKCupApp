@@ -8,6 +8,7 @@ sealed class NewsViewState{
     object Unauthorized : NewsViewState()
     object Authorized : NewsViewState()
     object Loading : NewsViewState()
+    object OperationComplete : NewsViewState()
     class Success(val postData: PostData) : NewsViewState()
 
     class Fail{

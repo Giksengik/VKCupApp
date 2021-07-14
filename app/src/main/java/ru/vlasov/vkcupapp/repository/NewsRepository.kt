@@ -9,7 +9,7 @@ interface NewsRepository {
 
     suspend fun getPost() : NewsViewState
 
-    suspend fun ignorePost(postData: PostData)
+    suspend fun ignorePost(postData: PostData) : NewsViewState
 
-    suspend fun likeLastItem()
+    suspend fun likeLastItem() : NewsViewState
 }

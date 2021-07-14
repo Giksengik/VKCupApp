@@ -39,4 +39,6 @@ interface JsonVkApiPlaceholder {
                          @Query("v") version : String  = VERSION
     ) : LikePostResponse
 
+    @GET("secure.checkToken")
+    suspend fun checkToken(@Query("token") token : String) : TokenCheckResponse
 }

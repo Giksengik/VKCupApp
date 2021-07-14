@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".VkCupApplication"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.VKCupApp">
         <activity android:name=".MainActivity">
             <intent-filter>

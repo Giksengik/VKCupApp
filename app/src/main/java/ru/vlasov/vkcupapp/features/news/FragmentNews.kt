@@ -35,13 +35,14 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.newsViewState.observe(viewLifecycleOwner){
+        viewModel.newsViewState.observe(viewLifecycleOwner) {
             handleState(it)
         }
-        binding?.imageButtonDislikePost?.setOnClickListener{
+
+        binding?.imageButtonDislikePost?.setOnClickListener {
             viewModel.loadContent()
-            lifecycleScope.launch {
-                if(isContentDisplaying()) {
+            if (isContentDisplaying()) {
+                lifecycleScope.launch {
                     binding?.contentPlaceholder?.let { card ->
                         cardHideFromHide(card)
                         setCardColor(ResourcesCompat.getColor(resources, R.color.transparency_blue, null))
@@ -55,17 +56,17 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
 
         binding?.imageButtonLikePost?.setOnClickListener{
             viewModel.loadContent()
-            lifecycleScope.launch {
-                if(isContentDisplaying()) {
-                    binding?.contentPlaceholder?.let { card ->
-                        viewModel.likePost()
-                        cardHideFromLike(card)
-                        setCardColor(ResourcesCompat.getColor(resources, R.color.transparency_red, null))
+            if(isContentDisplaying()) {
+                lifecycleScope.launch {
+                        binding?.contentPlaceholder?.let { card ->
+                            viewModel.likePost()
+                            cardHideFromLike(card)
+                            setCardColor(ResourcesCompat.getColor(resources, R.color.transparency_red, null))
+                        }
+                        binding?.backgroundCard?.let { card ->
+                            backgroundCardShow(card)
+                        }
                     }
-                    binding?.backgroundCard?.let { card ->
-                        backgroundCardShow(card)
-                    }
-                }
             }
         }
         viewModel.checkForAuthorized()
@@ -79,6 +80,7 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
     private fun handleState(viewState: NewsViewState) =
         when(viewState){
             is NewsViewState.Unauthorized -> {
+                setLoaded()
                 showAuthOfferConfirm()
             }
             is NewsViewState.Authorized ->{
