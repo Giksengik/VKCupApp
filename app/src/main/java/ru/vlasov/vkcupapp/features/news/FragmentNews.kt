@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.post_card.*
 import kotlinx.coroutines.launch
 import ru.vlasov.vkcupapp.AuthProvider
 import ru.vlasov.vkcupapp.R
@@ -22,6 +23,7 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
 
     var binding : FragmentNewsBinding? = null
     private val viewModel : NewsViewModel by viewModels()
+    var hasNetworkError = false
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -74,6 +76,7 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
 
     private fun isContentDisplaying() : Boolean =
         childFragmentManager.findFragmentById(R.id.contentPlaceholder) is FragmentNewsCard
+                && !hasNetworkError
 
 
 
@@ -81,21 +84,30 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
         when(viewState){
             is NewsViewState.Unauthorized -> {
                 setLoaded()
+                hasNetworkError = true
                 showAuthOfferConfirm()
             }
             is NewsViewState.Authorized ->{
                 setLoaded()
                 getContent()
+                hasNetworkError = false
             }
             is NewsViewState.Fail.NetworkError ->{
                 setLoaded()
                 showNetworkError()
+                hasNetworkError = true
             }
             is NewsViewState.Loading ->{
                 setLoading()
             }
+            is NewsViewState.EndOfContent ->{
+                setLoaded()
+                showEndOfContent()
+                hasNetworkError = false
+            }
             is NewsViewState.Success -> {
                 setLoaded()
+                hasNetworkError = false
                 if (childFragmentManager.findFragmentById(R.id.contentPlaceholder) != null) {
                     binding?.contentPlaceholder?.let {
                         if(binding?.contentPlaceholder?.x!! < 0)
@@ -124,7 +136,12 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
             }.show()
     }
 
-
+    private fun showEndOfContent() {
+        AlertDialog.Builder(context).setMessage(getString(R.string.content_over_text))
+                .setPositiveButton(R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
+    }
     private fun setLoading() {
         binding?.imageButtonLikePost?.isEnabled = false
         binding?.imageButtonDislikePost?.isEnabled = false
@@ -151,26 +168,26 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
 
     private fun cardHideFromHide(v: View) {
         v.clearAnimation()
-        val X = v.x - 3000
+        val X = v.x - 4000
         v.animate().translationX(X).start()
         v.animate().alpha(0f).start()
     }
     private fun cardShowFromHide(v: View) {
         v.clearAnimation()
-        val X = v.x + 3000
+        val X = v.x + 4000
         v.translationX = X
         v.animate().alpha(1f).start()
     }
 
     private fun cardHideFromLike(v: View) {
         v.clearAnimation()
-        val X = v.x + 3000
+        val X = v.x + 4000
         v.animate().translationX(X).start()
         v.animate().alpha(0f).start()
     }
     private fun cardShowFromLike(v: View) {
         v.clearAnimation()
-        val X = v.x - 3000
+        val X = v.x - 4000
         v.translationX = X
         v.animate().alpha(1f).start()
     }
@@ -186,8 +203,6 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
         v.animate().scaleX(0.85f).start()
 
     }
-
-
 
 
     private fun authorize() {
@@ -214,6 +229,7 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
     }
 
     override fun onNetworkButtonClick() {
+
         viewModel.loadContent()
     }
 

@@ -1,5 +1,7 @@
 package ru.vlasov.vkcupapp.network.json.vkapi.responses
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class LikesResponse (@SerialName("likes") val likesCount : Int)
+@Serializable
+class LikesResponse (@SerialName("likes") val likesCount : Long)

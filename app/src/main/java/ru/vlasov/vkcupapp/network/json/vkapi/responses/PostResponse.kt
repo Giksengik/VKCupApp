@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class PostResponse (
-    @SerialName("items") val items : List<NewsContent>,
-    @SerialName("next_from") val nextFrom : String
+    @SerialName("items") val items : List<NewsContent> = listOf(),
+    @SerialName("next_from") val nextFrom : String =""
         )

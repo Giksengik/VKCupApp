@@ -34,13 +34,8 @@ class VkDataSource @Inject constructor(@VkAPI val api : JsonVkApiPlaceholder, pr
     }
 
     override suspend fun likePost(postData: PostData) {
-        if(checkToken()){
         api.likePost(ownerId = "-${postData.content.sourceId.absoluteValue}",
-                itemId = "${postData.content.postId.absoluteValue}", accessToken = vkUserDataHolder.getToken())
-        }
-        else
-            throw HttpException(Response.error<String>(5,"{\"message\":\"invalid token\"}"
-            .toResponseBody("application/json".toMediaTypeOrNull())))
+                itemId = "${postData.content.postId}", accessToken = vkUserDataHolder.getToken())
     }
 
     private suspend fun checkToken() : Boolean{

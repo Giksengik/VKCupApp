@@ -27,7 +27,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun getPost(): NewsViewState{
         return if(postCount >= currentPostsList.size){
-            if(postCount != 0){
+            if(postCount != 0 && currentPostsList.isNotEmpty()){
                 ignorePost(postData = currentPostsList[postCount - 1])
             }
             loadPosts()
@@ -43,6 +43,8 @@ class NewsRepositoryImpl @Inject constructor(
             val res = remoteDataSource.getPosts()
             currentPostsList = res
             postCount = 0
+            if(res.size < 2)
+                NewsViewState.EndOfContent
             NewsViewState.Success(currentPostsList[postCount++])
         }catch (e : Exception){
             e.printStackTrace()
