@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="com_vk_sdk_AppId">7902310</integer>
+    <integer name="big_post_text_size">21</integer>
+</resources>

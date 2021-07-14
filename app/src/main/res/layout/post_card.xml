@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentCard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/contentPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/groupIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="13dp"
+            android:contentDescription="@string/group_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/groupName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/groupIcon"
+            app:layout_constraintTop_toTopOf="@+id/groupIcon" />
+
+        <TextView
+            android:id="@+id/dateOfPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/light_grey"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/groupIcon"
+            app:layout_constraintTop_toTopOf="@+id/groupName" />
+
+        <ImageView
+            android:id="@+id/imageLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="21dp"
+            android:contentDescription="@string/likes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_like_count" />
+
+        <TextView
+            android:id="@+id/numberOfLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
+            app:layout_constraintStart_toEndOf="@+id/imageLikes"
+            app:layout_constraintTop_toTopOf="@+id/imageLikes" />
+
+        <ImageView
+            android:id="@+id/imageComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:contentDescription="@string/comments"
+            app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
+            app:layout_constraintStart_toEndOf="@+id/numberOfLikes"
+            app:layout_constraintTop_toTopOf="@+id/imageLikes"
+            app:srcCompat="@drawable/ic_comment" />
+
+        <TextView
+            android:id="@+id/numberOfComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
+            app:layout_constraintStart_toEndOf="@+id/imageComments"
+            app:layout_constraintTop_toTopOf="@+id/imageLikes" />
+
+        <ImageView
+            android:id="@+id/imageReposts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:contentDescription="@string/reposts"
+            app:layout_constraintBottom_toBottomOf="@+id/imageComments"
+            app:layout_constraintStart_toEndOf="@+id/numberOfComments"
+            app:layout_constraintTop_toTopOf="@+id/imageComments"
+            app:srcCompat="@drawable/ic_repost" />
+
+        <TextView
+            android:id="@+id/numOfReposts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/imageLikes"
+            app:layout_constraintStart_toEndOf="@+id/imageReposts"
+            app:layout_constraintTop_toTopOf="@+id/imageLikes" />
+
+        <TextView
+            android:id="@+id/contentDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="17dp"
+            android:gravity="bottom"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageLikes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupIcon"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/contentImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="7:5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupIcon"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <View
+            android:id="@+id/backgroundMask"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

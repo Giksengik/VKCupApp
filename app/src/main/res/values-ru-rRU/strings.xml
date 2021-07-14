@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VKCupApp</string>
+    <string name="news">Новости</string>
+    <string name="taxi">Такси</string>
+    <string name="game">Игра</string>
+    <string name="video">Видео</string>
+    <string name="voice">Голос</string>
+    <string name="hide">Скрыть</string>
+    <string name="like">Нравится</string>
+    <string name="group_name">Иконка группы</string>
+    <string name="likes">Лайки</string>
+    <string name="comments">Комментарии</string>
+    <string name="reposts">Репорты</string>
+    <string name="auth_error">Ошибка авторизации, пожалуйста попробуйте ещё раз</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">ЗАКРЫТЬ</string>
+    <string name="auth_offer_text">Чтобы получить доступ к сервису, требуется авторизация Вконтакте</string>
+    <string name="ago">назад</string>
+    <string name="hour">час</string>
+    <string name="hours">часов</string>
+    <string name="minute">минута</string>
+    <string name="minutes">минут</string>
+    <string name="auth">Авторизоваться</string>
+    <string name="try_again">Повторить</string>
+    <string name="network_error_text">Ошибка сети, пожалуйста проверьте своё соединение и попробуйте ещё раз</string>
+</resources>

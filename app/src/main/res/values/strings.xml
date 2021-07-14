@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">VKCupApp</string>
+    <string name="news">News</string>
+    <string name="taxi">Taxi</string>
+    <string name="game">Game</string>
+    <string name="video">Video</string>
+    <string name="voice">Voice</string>
+    <string name="hide">Hide</string>
+    <string name="like">Like</string>
+    <string name="group_name">Group icon</string>
+    <string name="likes">Likes</string>
+    <string name="comments">Comments</string>
+    <string name="reposts">Reposts</string>
+    <string name="vk_user_data_key" translatable="false">vkuserdata</string>
+    <string name="auth_error">Authentication error , please try again</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="auth_offer_text">To gain access, authorization in Vkontakte is required</string>
+    <string name="ago">ago</string>
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+    <string name="minute">minute</string>
+    <string name="minutes">minutes</string>
+    <string name="auth">Auth</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="network_error_text">Network error, please check your connection and try again</string>
+</resources>

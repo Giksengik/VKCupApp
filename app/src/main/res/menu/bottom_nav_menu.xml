@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragmentNews"
+        android:icon="@drawable/ic_baseline_news_24"
+        android:title="@string/news" />
+    <item
+        android:id="@+id/fragmentTaxi"
+        android:icon="@drawable/ic_baseline_taxi_24"
+        android:title="@string/taxi"
+        />
+    <item
+        android:id="@+id/fragmentGame"
+        android:icon="@drawable/ic_baseline_game_24"
+        android:title="@string/game"
+         />
+    <item
+        android:id="@+id/fragmentVideo"
+        android:icon="@drawable/ic_baseline_video_24"
+        android:title="@string/video"
+        />
+    <item
+        android:id="@+id/fragmentVoice"
+        android:icon="@drawable/ic_baseline_voice_24"
+        android:title="@string/voice"
+        />
+</menu>
