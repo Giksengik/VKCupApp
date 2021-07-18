@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="taxiLocationEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxStrokeColor">#33818C99</item>
+        <item name="boxStrokeWidth">0.5dp</item>
+        <item name="boxStrokeWidthFocused">0.5dp</item>
+        <item name="boxBackgroundColor">@color/white</item>
+    </style>
+</resources>

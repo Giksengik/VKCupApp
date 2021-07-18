@@ -40,4 +40,9 @@ class FragmentNetworkError() : Fragment() {
         }
         super.onViewCreated(view, savedInstanceState)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkButtonListener = null
+    }
 }

@@ -41,4 +41,9 @@ class FragmentUnauthenticated() : Fragment() {
         }
         super.onViewCreated(view, savedInstanceState)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        authButtonListener = null
+    }
 }

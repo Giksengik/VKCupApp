@@ -13,4 +13,5 @@
     <color name="turquoise">#ff63B9BA</color>
     <color name="transparency_red">#33ff0000</color>
     <color name="transparency_blue">#33001eff</color>
+    <color name="selected_taxi_color">#22725BE3</color>
 </resources>

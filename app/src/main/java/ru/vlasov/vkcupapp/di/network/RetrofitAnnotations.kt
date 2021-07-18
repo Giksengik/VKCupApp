@@ -4,4 +4,9 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class VkRetrofitAnnotation
+annotation class VkRetrofit
+
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MapRetrofit

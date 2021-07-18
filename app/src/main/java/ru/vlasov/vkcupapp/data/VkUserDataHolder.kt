@@ -8,7 +8,7 @@ import ru.vlasov.vkcupapp.R
 import javax.inject.Inject
 
 class VkUserDataHolder @Inject constructor(@ApplicationContext context: Context) {
-    var dataHolder : SharedPreferences =
+    private var dataHolder : SharedPreferences =
         context.getSharedPreferences(context.getString(R.string.vk_user_data_key), Context.MODE_PRIVATE)
 
     fun parseUserToken(token: VKAccessToken){

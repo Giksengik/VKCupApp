@@ -10,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import ru.vlasov.vkcupapp.network.json.map.JsonMapApiPlaceholder
 import ru.vlasov.vkcupapp.network.json.vkapi.JsonVkApiPlaceholder
 import java.util.concurrent.TimeUnit
 
@@ -22,9 +23,14 @@ object RetrofitModule {
     private const val READ_TIMEOUT = 10L
 
     @Provides
-    @VkApiUrlAnnotation
+    @VkApiUrl
     fun provideVkApiUrl() : String =
         "https://api.vk.com/method/"
+
+    @Provides
+    @MapApiUrl
+    fun provideMapApiUrl() : String =
+            "https://nominatim.openstreetmap.org/"
 
 
     @Provides
@@ -47,22 +53,35 @@ object RetrofitModule {
             .build()
 
     @Provides
-    @VkRetrofitAnnotation
+    @VkRetrofit
     fun provideVkApiRetrofit(httpClient: OkHttpClient, json: Json,
-                             @VkApiUrlAnnotation baseUrl: String) : Retrofit =
+                             @VkApiUrl baseUrl: String) : Retrofit =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .client(httpClient)
             .build()
 
+    @Provides
+    @MapRetrofit
+    fun provideMapRetrofit(httpClient: OkHttpClient, json: Json,
+                             @MapApiUrl baseUrl: String) : Retrofit =
+            Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+                    .client(httpClient)
+                    .build()
 
 
     @Provides
     @VkAPI
-    fun provideVkApi (@VkRetrofitAnnotation retrofit: Retrofit) : JsonVkApiPlaceholder =
+    fun provideVkApi (@VkRetrofit retrofit: Retrofit) : JsonVkApiPlaceholder =
         retrofit.create(JsonVkApiPlaceholder::class.java)
 
+    @Provides
+    @MapAPI
+    fun provideMapApi (@MapRetrofit retrofit: Retrofit) : JsonMapApiPlaceholder =
+            retrofit.create(JsonMapApiPlaceholder::class.java)
 
 
 }

@@ -16,6 +16,7 @@ import ru.vlasov.vkcupapp.AuthProvider
 import ru.vlasov.vkcupapp.R
 import ru.vlasov.vkcupapp.databinding.FragmentNewsBinding
 import ru.vlasov.vkcupapp.features.FragmentNetworkError
+import ru.vlasov.vkcupapp.features.NetworkUser
 import ru.vlasov.vkcupapp.models.vkapi.PostData
 
 @AndroidEntryPoint
@@ -126,14 +127,9 @@ class FragmentNews : Fragment(), FragmentNetworkError.NetworkButtonListener, Fra
         }
 
     private fun showNetworkError() {
-        AlertDialog.Builder(context).setMessage(R.string.network_error_text)
-                .setPositiveButton(R.string.ok) { dialog, _ ->
-                    onNetworkButtonClick()
-                    dialog.dismiss()
-                }
-                .setNegativeButton(R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-            }.show()
+        activity?.let{
+            (it as NetworkUser).showNetworkError()
+        }
     }
 
     private fun showEndOfContent() {

@@ -10,7 +10,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentTaxi"
-        android:name="ru.vlasov.vkcupapp.features.FragmentTaxi"
+        android:name="ru.vlasov.vkcupapp.features.taxi.FragmentTaxi"
         android:label="FragmentTaxi" >
     </fragment>
     <fragment

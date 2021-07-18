@@ -1,5 +1,6 @@
 package ru.vlasov.vkcupapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,12 +16,13 @@ import com.vk.api.sdk.auth.VKScope
 import dagger.hilt.android.AndroidEntryPoint
 import ru.vlasov.vkcupapp.data.VkUserDataHolder
 import ru.vlasov.vkcupapp.databinding.ActivityMainBinding
+import ru.vlasov.vkcupapp.features.NetworkUser
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class  MainActivity
-    : AppCompatActivity() , AuthProvider {
+    : AppCompatActivity() , AuthProvider, NetworkUser {
     @Inject lateinit var vkUserDataHolder: VkUserDataHolder
     lateinit var binding : ActivityMainBinding
 
@@ -63,5 +65,12 @@ class  MainActivity
         VK.login(this, arrayListOf(VKScope.WALL, VKScope.FRIENDS))
         binding.bottomNavigationView.visibility = View.GONE
         binding.navHostFragment.visibility = View.GONE
+    }
+
+    override fun showNetworkError() {
+        AlertDialog.Builder(this).setMessage(R.string.network_error_text)
+                .setPositiveButton(R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
     }
 }

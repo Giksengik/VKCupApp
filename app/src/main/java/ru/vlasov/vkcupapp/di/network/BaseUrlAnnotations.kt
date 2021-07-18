@@ -5,4 +5,8 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class VkApiUrlAnnotation
+annotation class VkApiUrl
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MapApiUrl

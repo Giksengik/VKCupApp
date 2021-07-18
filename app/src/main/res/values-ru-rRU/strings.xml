@@ -22,7 +22,18 @@
     <string name="minute">минута</string>
     <string name="minutes">минут</string>
     <string name="auth">Авторизоваться</string>
-    <string name="try_again">Повторить</string>
-    <string name="network_error_text">Ошибка сети, пожалуйста проверьте своё соединение и попробуйте ещё раз</string>
-    <string name="content_over_text">Новости закончились, возвращайтесь позже</string>
+    <string name="try_again">Попробовать ещё раз</string>
+    <string name="network_error_text">Ошибка сети, проверьте соединение и попробуйте ещё раз</string>
+    <string name="content_over_text">Лента закончилась, проверьте приложение позже</string>
+    <string name="location_permission_explanation_text">Для работы приложения требуется доступ к геолокации</string>
+    <string name="location_permission_denied_text">Доступ к геолокации ограничен. Пожалуйста дайте доступ для работы приложения</string>
+    <string name="wrong_route_text">Неверный путь, дорога не отрисована</string>
+    <string name="done">Готово</string>
+    <string name="text_last_location_undefined">Местоположение неопределено</string>
+    <string name="go_fast">Проехать быстро</string>
+    <string name="see_beauty">Увидеть красоты</string>
+    <string name="on_a_drone">На беспилотнике</string>
+    <string name="min_on_the_way">мин в пути</string>
+    <string name="min_waiting">мин ожидания</string>
+    <string name="order_for">Заказать за </string>
 </resources>

@@ -25,4 +25,17 @@
     <string name="try_again">TRY AGAIN</string>
     <string name="network_error_text">Network error, please check your connection and try again</string>
     <string name="content_over_text">Content is over, check this app later</string>
+    <string name="location_permission_explanation_text">To work with this app you need to grant location permission</string>
+    <string name="location_permission_denied_text">Location permission is denied. Please grant this permission to work with app</string>
+    <string name="last_location_sp" translatable="false">LAST_LOCATION_SP</string>
+    <string name="wrong_route_text">Wrong way, the route haven\'t been rendered</string>
+    <string name="done">Done</string>
+    <string name="text_last_location_undefined">Last location is undefined</string>
+    <string name="go_fast">Go fast</string>
+    <string name="see_beauty">See beauty</string>
+    <string name="on_a_drone">On a drone</string>
+    <string name="currency" translatable="false">₽</string>
+    <string name="min_on_the_way">min on the way</string>
+    <string name="min_waiting">min waiting</string>
+    <string name="order_for">Order for </string>
 </resources>
